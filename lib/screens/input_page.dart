@@ -1,8 +1,10 @@
-import 'package:bmi_calculator/reusable_card.dart';
+import 'package:bmi_calculator/components/icon_content.dart';
+import 'package:bmi_calculator/components/reusable_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'constants.dart';
-import 'icon_content.dart';
+import '../components/bottom_button.dart';
+import '../constants.dart';
+import '../components/round_icon_button.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -222,20 +224,11 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            color: kBottomContainerColor,
-            margin: EdgeInsets.only(top: 8.0),
-            width: double.infinity,
-            height: kBottomContainerHeight,
-            child: Center(
-              child: Text(
-                'CALCULATE',
-                style: TextStyle(
-                  fontSize: 30.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+          BottomButton(
+            buttonTitle: 'CALCULATE',
+            onTap: () {
+              Navigator.pushNamed(context, '/results');
+            },
           ),
         ],
       ),
@@ -243,24 +236,3 @@ class _InputPageState extends State<InputPage> {
   }
 }
 
-class RoundIconButton extends StatelessWidget {
-  RoundIconButton({this.icon, this.onPressed});
-
-  final IconData icon;
-  final Function onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      child: Icon(icon),
-      onPressed: onPressed,
-      shape: CircleBorder(),
-      fillColor: Color(0xFF4C4F5E),
-      constraints: BoxConstraints.tightFor(
-        width: 56.0,
-        height: 56.0,
-      ),
-      elevation: 6.0,
-    );
-  }
-}
